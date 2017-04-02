@@ -155,7 +155,7 @@ class PlacestartMonitor:
                 logging.debug("Probe response: %s" % data)
                 break
             else:
-                logging.warn("Probling failed with %s: %s", r, r.text)
+                logging.warn("Probling failed with %s: %s", probe_request, probe_request.text)
                 time.sleep(1)
         
         old_color = codemap[data["color"]]
