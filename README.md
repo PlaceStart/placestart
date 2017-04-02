@@ -30,3 +30,4 @@ The template file can be updated, the script will automatically pick it up.
 
 The template file must respect the correct RGB values accepted by the canvas. The "invisible green" that marks ignored areas is different from the actual green.
 
+If you want more details about the execution, you can pass an extra `--debug` option.
