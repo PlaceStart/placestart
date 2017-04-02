@@ -204,7 +204,8 @@ class PlacestartMonitor:
                 self.cleanup()
             except KeyboardInterrupt:
                 break
-            except:
+            except Exception as e:
+                logging.error(e)
                 logging.warn("Something went wrong, restarting bot.")
                 self.cleanup()
                 
