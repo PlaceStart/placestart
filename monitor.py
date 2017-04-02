@@ -192,12 +192,15 @@ class PlacestartMonitor:
     
     def maintenance(self):
         while True:
-            self.update_template()
-            self.load_target()
-            self.get_board()
-            self.get_diff()
-            self.fix_something()
-            self.wait()
+            try:
+                self.update_template()
+                self.load_target()
+                self.get_board()
+                self.get_diff()
+                self.fix_something()
+                self.wait()
+            except:
+                logging.warn("Something went wrong, restarting bot.")
 
 
 if __name__ == "__main__":
