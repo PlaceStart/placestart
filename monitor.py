@@ -92,8 +92,7 @@ class PlacestartMonitor:
                 pixels[x*2    , y] = color1
                 pixels[x*2 + 1, y] = color2
         
-        with open('board.bmp', 'wb') as board_file:
-            board_image.save(board_file)
+        board_image.save('board.bmp')
         
         self._board = board_image.convert('RGB')
         return
@@ -120,16 +119,14 @@ class PlacestartMonitor:
     
     def fix_something(self):
         # randomly choose, but among the leftmost ones
-        coord = random.choice(self._diff[:25])
-        color = self._target.load()[coord]
-        logging.info("Target pixel {} will be painted {}".format(
-            coord, mapcolor[color]
-        ))
-        self._intent = (coord, color)
         width, height = self._target.size
-    
-        (x, y), new_color = self._intent
+        (x, y) = coord = random.choice(self._diff[:25])
         y += 1000-height
+        
+        new_color = self._target.load()[coord]
+        logging.info("Target pixel {} will be painted {}".format(
+            (x,y) , mapcolor[new_color]
+        ))
 
         session = requests.Session()
         session.mount('https://www.reddit.com', requests.adapters.HTTPAdapter(max_retries=5))
@@ -203,6 +200,7 @@ class PlacestartMonitor:
                 break
             except:
                 logging.warn("Something went wrong, restarting bot.")
+                
 
 
 if __name__ == "__main__":
