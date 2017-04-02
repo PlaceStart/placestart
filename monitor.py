@@ -96,7 +96,7 @@ class PlacestartMonitor:
     def get_diff(self):
         width, height = self._target.size
 
-        start_region = self._board.crop(box=(0,1000-height-1,width,1000))
+        start_region = self._board.crop(box=(0,1000-height,width,1000))
         assert width, height == start_region.size
         start_region.save('actual.bmp')
 
