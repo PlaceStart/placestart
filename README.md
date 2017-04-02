@@ -2,13 +2,18 @@
 
 To run this painter bot, you must have python and pip installed.
 
-0. Download the bot folder and open a terminal inside it.
+0. Make sure Python3 and pip are installed
 
-1. Install the requirements:
+    `python --version` should output python 3.x
+    `pip --version` should output whatever, just not an error
+
+1. Download the bot folder and open a terminal inside it.
+
+2. Install the requirements:
 
     `pip install -r requirements.txt`
 
-2. Run the bot in permanent maintenance mode
+3. Run the bot in permanent maintenance mode
 
     `python monitor.py --username youruser --password yourpass maintenance`
 
