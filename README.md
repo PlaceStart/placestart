@@ -3,9 +3,11 @@
 To run this painter bot, you must have python and pip installed.
 
 1. Install the requirements:
+
     `pip install -r requirements.txt`
 
 2. Run the bot in permanent maintenance mode
+
     `python .\monitor.py --username youruser --password yourpass maintenance`
 
 Don't worry, the bot respects the indicated cooldown between drawings.
