@@ -1,6 +1,9 @@
 # /r/placestart defender
 
 To run this painter bot, you must have python and pip installed.
+If you don't have it or it's not working properly, check the python help at the bottom - thanks Ryhida.
+
+## Mantainer Bot
 
 0. Make sure Python3 and pip are installed
 
@@ -31,3 +34,22 @@ The template file can be updated, the script will automatically pick it up.
 The template file must respect the correct RGB values accepted by the canvas. The "invisible green" that marks ignored areas is different from the actual green.
 
 If you want more details about the execution, you can pass an extra `--debug` option.
+
+## Python Help
+
+make folder C:\python\
+
+Download python 3 - Chose custom install once you get to choose path C:\python\
+
+Open CMD window
+
+C:\python\python.exe --version should output python 3.x
+
+download and double click pip.py to install it
+
+C:\python\python.exe -m pip --version should output whatever, just not an error
+
+C:\python\python.exe -m pip install -r requirements.txt Should download some stuff
+
+C:\python\python.exe \location\monitor.py --username youruser --password yourpass maintenance
+
