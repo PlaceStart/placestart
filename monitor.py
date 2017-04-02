@@ -58,7 +58,7 @@ class PlacestartMonitor:
         self._diff = []
         self._intent = None
         self._wait = None
-    
+
     def update_template(self):
         template_url = "https://github.com/PlaceStart/placestart/raw/master/target.png"
         urllib.request.urlretrieve(template_url, "target.png")
@@ -71,7 +71,7 @@ class PlacestartMonitor:
         target_pixels = self._target.load()
         for i in range(width):
             for j in range(height):
-                pixel = target_pixels[i,j] 
+                pixel = target_pixels[i,j]
                 if pixel not in colormap.values():
                     raise RuntimeError("Target pixel not expected: {} at {}".format(pixel, (i,j)))
         return
@@ -81,7 +81,7 @@ class PlacestartMonitor:
         board_bytes = iter(urllib.request.urlopen(board_url).read())
         board_image = PIL.Image.new('P', (1000,1000))
         board_image.putpalette(sum(colormap.values(), ()))
-        
+
         pixels = board_image.load()
         for i in range(4): next(board_bytes)
         for y in range(1000):
@@ -91,19 +91,18 @@ class PlacestartMonitor:
                 color2 = datum - (color1 << 4)
                 pixels[x*2    , y] = color1
                 pixels[x*2 + 1, y] = color2
-        
+
         board_image.save('board.bmp')
-        
+
         self._board = board_image.convert('RGB')
         return
-    
+
     def get_diff(self):
         width, height = self._target.size
 
         start_region = self._board.crop(box=(0,1000-height,width,1000))
         assert width, height == start_region.size
-        start_region.save('actual.bmp')
-
+        
         target_pixels = self._target.load()
         actual_pixels = start_region.load()
 
@@ -116,13 +115,13 @@ class PlacestartMonitor:
             len(self._diff)
         ))
         return
-    
+
     def fix_something(self):
         # randomly choose, but among the leftmost ones
         width, height = self._target.size
         (x, y) = coord = random.choice(self._diff[:25])
         y += 1000-height
-        
+
         new_color = self._target.load()[coord]
         logging.info("Target pixel {} will be painted {}".format(
             (x,y) , mapcolor[new_color]
@@ -154,12 +153,12 @@ class PlacestartMonitor:
             else:
                 logging.warn("Probling failed with %s: %s", probe_request, probe_request.text)
                 time.sleep(1)
-        
+
         old_color = codemap[data["color"]]
         if new_color == old_color:
             logging.info("Target pixel was already fixed")
             return
-        
+
         # Draw it!
         draw_request = session.post(
             "https://www.reddit.com/api/place/draw.json",
@@ -179,19 +178,19 @@ class PlacestartMonitor:
             logging.info("On cooldown, waiting {} seconds".format(self._wait))
 
         return
-    
+
     def wait(self):
         if self._wait:
             time.sleep(self._wait)
         self._wait = None
-    
+
     def cleanup(self):
         self._board = None
         self._target = None
         self._diff = []
         self._intent = None
         self._wait = None
-    
+
     def maintenance(self):
         while True:
             try:
@@ -208,7 +207,7 @@ class PlacestartMonitor:
                 logging.error(e)
                 logging.warn("Something went wrong, restarting bot.")
                 self.cleanup()
-                
+
 
 
 if __name__ == "__main__":
