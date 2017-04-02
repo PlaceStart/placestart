@@ -199,6 +199,8 @@ class PlacestartMonitor:
                 self.get_diff()
                 self.fix_something()
                 self.wait()
+            except KeyboardInterrupt:
+                break
             except:
                 logging.warn("Something went wrong, restarting bot.")
 
