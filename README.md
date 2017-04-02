@@ -5,7 +5,11 @@ To run this painter bot, you must have python and pip installed.
 0. Make sure Python3 and pip are installed
 
     `python --version` should output python 3.x
+
     `pip --version` should output whatever, just not an error
+
+    If you're having trouble with this, check [this](http://stackoverflow.com/questions/23708898/pip-is-not-recognized-as-an-internal-or-external-command) or related fixes
+
 
 1. Download the bot folder and open a terminal inside it.
 
