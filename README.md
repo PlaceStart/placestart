@@ -24,12 +24,6 @@ If you don't have it or it's not working properly, check the python help at the 
 
     `python monitor.py --username youruser --password yourpass maintenance`
 
-4. Some systems are behaving weirdly because PIL is inconsistent.
-
-    Before leaving the script to run, check that the `boad.bmp` has been downloaded correctly (otherwise it will have weird colors). If it's not healthy colors, it's a problem.
-
-    We haven't solved that problem. If you do, please PR.
-
 Don't worry, the bot respects the indicated cooldown between drawings.
 The code is contained in a single file, so you can see that I won't send your credentials anywhere except Reddit's API. Also, there's no self-updating component except it tries to update the `target.png` at every run.
 
