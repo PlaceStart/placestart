@@ -166,26 +166,31 @@ class PlacestartMonitor:
             data={"x": str(x), "y": str(y), "color": str(mapcode[new_color])}
         )
         logging.debug("Draw response: %s" % draw_request.json())
-        if "wait_seconds" in draw_request.json():
-            self._wait = float(draw_request.json()["wait_seconds"])
-            logging.info("Still on cooldown, waiting {} seconds".format(self._wait))
-            return
 
         if "error" not in draw_request.json():
-            logging.info("Placed color! Waiting 5 minutes.")
+            logging.info("Placed color!")
             self._wait = 300
-            return
         else:
-            logging.info("Something went wrong, trying again in a second.")
+            logging.info("Something went wrong, trying again later (Probably cooldown).")
             self._wait = 1
-        
+
+        if "wait_seconds" in draw_request.json():
+            self._wait = float(draw_request.json()["wait_seconds"])
+            logging.info("On cooldown, waiting {} seconds".format(self._wait))
+
         return
     
     def wait(self):
         if self._wait:
             time.sleep(self._wait)
         self._wait = None
-
+    
+    def cleanup(self):
+        self._board = None
+        self._target = None
+        self._diff = []
+        self._intent = None
+        self._wait = None
     
     def maintenance(self):
         while True:
@@ -196,10 +201,12 @@ class PlacestartMonitor:
                 self.get_diff()
                 self.fix_something()
                 self.wait()
+                self.cleanup()
             except KeyboardInterrupt:
                 break
             except:
                 logging.warn("Something went wrong, restarting bot.")
+                self.cleanup()
                 
 
 
