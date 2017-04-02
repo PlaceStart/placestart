@@ -58,6 +58,11 @@ class PlacestartMonitor:
         self._diff = []
         self._intent = None
         self._wait = None
+    
+    def update_template(self):
+        template_url = "https://github.com/PlaceStart/placestart/raw/master/target.png"
+        urllib.request.urlretrieve(template_url, "target.png")
+        return
 
     def load_target(self):
         self._target = PIL.Image.open('target.png').convert('RGB')
@@ -187,6 +192,7 @@ class PlacestartMonitor:
     
     def maintenance(self):
         while True:
+            self.update_template()
             self.load_target()
             self.get_board()
             self.get_diff()
