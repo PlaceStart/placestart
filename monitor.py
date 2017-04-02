@@ -47,6 +47,11 @@ mapcode = {
 }
 mapcolor = {v: k for k, v in colormap.items()}
 codemap = {v: k for k, v in mapcode.items()}
+pallete = sum([
+    (255, 255, 255), (228, 228, 228), (136, 136, 136), (34, 34, 34), (255, 167, 209),
+    (229, 0, 0), (229, 149, 0), (160, 106, 66), (229, 217, 0), (148, 224, 68),
+    (2, 190, 1), (0, 211, 221), (0, 131, 199), (0, 0, 234), (207, 110, 228), (130, 0, 128)
+], ())
 
 class PlacestartMonitor:
     def __init__(self, username, password, debug=False):
@@ -80,8 +85,8 @@ class PlacestartMonitor:
         board_url = 'https://www.reddit.com/api/place/board-bitmap'
         board_bytes = iter(urllib.request.urlopen(board_url).read())
         board_image = PIL.Image.new('P', (1000,1000))
-        board_image.putpalette(sum(colormap.values(), ()))
-
+        board_image.putpalette(pallete)
+        
         pixels = board_image.load()
         for i in range(4): next(board_bytes)
         for y in range(1000):
