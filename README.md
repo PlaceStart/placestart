@@ -23,3 +23,10 @@ To run this painter bot, you must have python and pip installed.
 
 Don't worry, the bot respects the indicated cooldown between drawings.
 The code is contained in a single file, so you can see that I won't send your credentials anywhere except Reddit's API. Also, there's no self-updating component except it tries to update the `target.png` at every run.
+
+## Notes
+
+The template file can be updated, the script will automatically pick it up.
+
+The template file must respect the correct RGB values accepted by the canvas. The "invisible green" that marks ignored areas is different from the actual green.
+
