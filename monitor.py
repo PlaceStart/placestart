@@ -120,7 +120,7 @@ class PlacestartMonitor:
     
     def fix_something(self):
         # randomly choose, but among the leftmost ones
-        coord = random.choice(self._diff[:50])
+        coord = random.choice(self._diff[:25])
         color = self._target.load()[coord]
         logging.info("Target pixel {} will be painted {}".format(
             coord, mapcolor[color]
