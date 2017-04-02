@@ -86,7 +86,7 @@ class PlacestartMonitor:
         board_bytes = iter(urllib.request.urlopen(board_url).read())
         board_image = PIL.Image.new('P', (1000,1000))
         board_image.putpalette(pallete)
-        
+
         pixels = board_image.load()
         for i in range(4): next(board_bytes)
         for y in range(1000):
@@ -97,8 +97,6 @@ class PlacestartMonitor:
                 pixels[x*2    , y] = color1
                 pixels[x*2 + 1, y] = color2
 
-        board_image.save('board.bmp')
-
         self._board = board_image.convert('RGB')
         return
 
@@ -107,7 +105,7 @@ class PlacestartMonitor:
 
         start_region = self._board.crop(box=(0,1000-height,width,1000))
         assert width, height == start_region.size
-        
+
         target_pixels = self._target.load()
         actual_pixels = start_region.load()
 
