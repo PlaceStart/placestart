@@ -25,7 +25,7 @@ colormap = {
     'pink': (207, 110, 228),
     'purple': (130, 0, 128),
 
-    'dummy': (54, 199, 57)
+    'dummy': (0, 128, 128)
 }
 mapcode = {
         (255, 255, 255): 0,
@@ -65,7 +65,7 @@ class PlacestartMonitor:
         self._wait = None
 
     def update_template(self):
-        template_url = "https://github.com/PlaceStart/placestart/raw/master/target.png"
+        template_url = "https://raw.githubusercontent.com/PlaceStart/target-image/master/target.png"
         urllib.request.urlretrieve(template_url, "target.png")
         return
 
