@@ -20,7 +20,16 @@ If you don't have it or it's not working properly, check the python help at the 
 
     `pip install -r requirements.txt`
 
-3. Run the bot in permanent maintenance mode
+3. Setup the config.json file with your reddit credentials.
+
+    ```
+    {
+        "username": "YOUR-USERNAME",
+        "password": "YOUR-PASSWORD"
+    }
+    ```
+
+4. Run the bot in permanent maintenance mode
 
     `python monitor.py --username youruser --password yourpass maintenance`
 
