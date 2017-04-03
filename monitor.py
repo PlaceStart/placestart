@@ -13,12 +13,17 @@ from colors import colormap, mapcolor, codemap, mapcode, pallete
 
 class PlacestartMonitor:
     def __init__(self, username=None, password=None, debug=False):
-        logging.basicConfig(level=logging.INFO if not debug else logging.DEBUG)
+        logging.basicConfig(
+            format='%(asctime)s - %(levelname)7s - %(message)s',
+            level=logging.INFO if not debug else logging.DEBUG
+        )
+        
         if username == None or password == None:
             with open('config.json') as user_config:    
                 data = json.load(user_config)
                 username = data['username']
                 password = data['password']
+                
         self._username = username
         self._password = password
         self._board = None
