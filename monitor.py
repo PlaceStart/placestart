@@ -4,6 +4,7 @@ import random
 import requests.adapters
 import time
 import urllib.request
+import json
 
 import fire
 
@@ -54,10 +55,12 @@ pallete = sum([
 ], ())
 
 class PlacestartMonitor:
-    def __init__(self, username, password, debug=False):
+    def __init__(self, debug=False):
         logging.basicConfig(level=logging.INFO if not debug else logging.DEBUG)
-        self._username = username
-        self._password = password
+        with open('config.json') as user_config:    
+            data = json.load(user_config)
+        self._username = data['username']
+        self._password = data['password']
         self._board = None
         self._target = None
         self._diff = []
