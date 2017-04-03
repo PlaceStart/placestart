@@ -35,21 +35,28 @@ The template file must respect the correct RGB values accepted by the canvas. Th
 
 If you want more details about the execution, you can pass an extra `--debug` option.
 
-## Python Help
+## Windows Python Help
 
-make folder C:\python\
+If you are having trouble running Python3 or adding it to your path these instructions may help.
 
-Download python 3 - Chose custom install once you get to choose path C:\python\
+1. Make folder `C:\python\`
 
-Open CMD window
+1. Download Python 3
 
-C:\python\python.exe --version should output python 3.x
+1. Click on Installer
 
-download and double click pip.py to install it
+1. Chose custom install and choose path `C:\python\`
 
-C:\python\python.exe -m pip --version should output whatever, just not an error
+1. Open CMD window
 
-C:\python\python.exe -m pip install -r requirements.txt Should download some stuff
+1. Type: `C:\python\python.exe --version` It should output python 3.x
 
-C:\python\python.exe \location\monitor.py --username youruser --password yourpass maintenance
+1. Download and double click pip.py to install it
+
+1. Type `C:\python\python.exe -m pip --version` should output whatever, just not an error
+
+1. `C:\python\python.exe -m pip install -r requirements.txt` This will download all the items needed to run this code
+
+1. Finally run the program by typing `C:\python\python.exe \location\monitor.py --username youruser --password yourpass maintenance`
+
 
