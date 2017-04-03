@@ -8,51 +8,8 @@ import json
 
 import fire
 
-colormap = {
-    'white': (255, 255, 255),
-    'lightgray': (228, 228, 228),
-    'darkgray': (136, 136, 136),
-    'black': (34, 34, 34),
-    'lightpink': (255, 167, 209),
-    'red': (229, 0, 0),
-    'orange': (229, 149, 0),
-    'brown': (160, 106, 66),
-    'yellow': (229, 217, 0),
-    'lightgreen': (148, 224, 68),
-    'green': (2, 190, 1),
-    'cyan': (0, 211, 221),
-    'grayblue': (0, 131, 199),
-    'blue': (0, 0, 234),
-    'pink': (207, 110, 228),
-    'purple': (130, 0, 128),
+from colors import colormap, mapcolor, codemap, mapcode, pallete
 
-    'dummy': (0, 128, 128)
-}
-mapcode = {
-        (255, 255, 255): 0,
-        (228, 228, 228): 1,
-        (136, 136, 136): 2,
-        (34, 34, 34): 3,
-        (255, 167, 209): 4,
-        (229, 0, 0): 5,
-        (229, 149, 0): 6,
-        (160, 106, 66): 7,
-        (229, 217, 0): 8,
-        (148, 224, 68): 9,
-        (2, 190, 1): 10,
-        (0, 211, 211): 11,
-        (0, 131, 199): 12,
-        (0, 0, 234): 13,
-        (207, 110, 228): 14,
-        (130, 0, 128): 15
-}
-mapcolor = {v: k for k, v in colormap.items()}
-codemap = {v: k for k, v in mapcode.items()}
-pallete = sum([
-    (255, 255, 255), (228, 228, 228), (136, 136, 136), (34, 34, 34), (255, 167, 209),
-    (229, 0, 0), (229, 149, 0), (160, 106, 66), (229, 217, 0), (148, 224, 68),
-    (2, 190, 1), (0, 211, 221), (0, 131, 199), (0, 0, 234), (207, 110, 228), (130, 0, 128)
-], ())
 
 class PlacestartMonitor:
     def __init__(self, debug=False):
@@ -64,16 +21,15 @@ class PlacestartMonitor:
         self._board = None
         self._target = None
         self._diff = []
-        self._intent = None
         self._wait = None
 
     def update_template(self):
-        template_url = "https://raw.githubusercontent.com/PlaceStart/target-image/master/target.png"
-        urllib.request.urlretrieve(template_url, "target.png")
+        template_url = "https://raw.githubusercontent.com/PlaceStart/placestart/master/template.png"
+        urllib.request.urlretrieve(template_url, "template.png")
         return
 
     def load_target(self):
-        self._target = PIL.Image.open('target.png').convert('RGB')
+        self._target = PIL.Image.open('template.png').convert('RGB')
         width, height = self._target.size
 
         target_pixels = self._target.load()
@@ -194,7 +150,6 @@ class PlacestartMonitor:
         self._board = None
         self._target = None
         self._diff = []
-        self._intent = None
         self._wait = None
 
     def maintenance(self):
@@ -210,8 +165,7 @@ class PlacestartMonitor:
             except KeyboardInterrupt:
                 break
             except Exception as e:
-                logging.error(e)
-                logging.warn("Something went wrong, restarting bot.")
+                logging.warn("Something went wrong, restarting bot Cause: %s." % e)
                 self.cleanup()
 
 
