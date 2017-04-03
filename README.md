@@ -31,7 +31,7 @@ If you don't have it or it's not working properly, check the python help at the 
 
 4. Run the bot in permanent maintenance mode
 
-    `python monitor.py maintenance`
+`python monitor.py maintenance`
 
 OBS: If you want to run multiple accounts, you can still run the old command:
     
