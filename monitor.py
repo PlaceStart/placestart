@@ -65,7 +65,7 @@ class PlacestartMonitor:
         self._wait = None
 
     def update_template(self):
-        template_url = "https://github.com/PlaceStart/placestart/raw/master/target.png"
+        template_url = "https://raw.githubusercontent.com/PlaceStart/target-image/master/target.png"
         urllib.request.urlretrieve(template_url, "target.png")
         return
 
